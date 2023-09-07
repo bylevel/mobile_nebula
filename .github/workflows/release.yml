@@ -52,8 +52,6 @@ jobs:
           touch env.sh
           
           cd android
-          fastlane release_build_number
-          echo "BUILD_NUMBER=$(cat ../release_build_number)" >> $GITHUB_ENV
           BUILD_NAME="${GITHUB_REF#refs/tags/v}" # strip the front refs/tags/v off
           BUILD_NAME="${BUILD_NAME%-*}" # strip the junk build number off
           echo "BUILD_NAME=$BUILD_NAME" >> $GITHUB_ENV
@@ -62,7 +60,7 @@ jobs:
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
         run: |
-          flutter build appbundle --build-number="$BUILD_NUMBER" --build-name="$BUILD_NAME"
+          flutter build appbundle  --build-name="$BUILD_NAME"
 
       - name: Collect Android artifacts
         uses: actions/upload-artifact@v3
