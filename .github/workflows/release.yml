@@ -48,7 +48,7 @@ jobs:
         run: |
           GOOGLE_PLAY_KEYSTORE_PATH="$RUNNER_TEMP/gp_signing.jks"
           echo "GOOGLE_PLAY_KEYSTORE_PATH=$GOOGLE_PLAY_KEYSTORE_PATH" >> $GITHUB_ENV
-          echo -n "$GOOGLE_PLAY_KEYSTORE_BASE64" | base64 --decode --output "$GOOGLE_PLAY_KEYSTORE_PATH"
+          echo -n "$GOOGLE_PLAY_KEYSTORE_BASE64" | base64 --decode > "$GOOGLE_PLAY_KEYSTORE_PATH"
 
       - name: Get build name and number, install dependencies
         run: |
